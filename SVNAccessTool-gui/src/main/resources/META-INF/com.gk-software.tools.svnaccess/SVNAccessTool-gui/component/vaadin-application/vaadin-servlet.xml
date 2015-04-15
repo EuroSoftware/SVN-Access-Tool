@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <!-- request handler for Vaadin, name must match the servlet name -->
+  <bean
+    id="vaadin-servlet"
+    parent="vaadinRequestHandler"
+    class="com.gk_software.core.client.web_vaadin.application.servlet.ApplicationHttpRequestHandler"
+   >
+    <property name="applicationClass" value="com.gk_software.core.client.web_vaadin.application.servlet.ServletSpringApplication" />
+  </bean>
+
+  <!-- Vaadin application -->
+  <bean
+    id="vaadinApplication"
+    parent="abstractVaadinApplication"
+    class="com.gk_software.core.client.web_vaadin.application.servlet.ServletSpringApplication"
+  />
+
+  <!-- session tracker filter - debug filter, which checks serializability of HTTP session -->
+  <bean id="session-tracker-filter" class="gk.spring_ext.web.session.SessionTrackerFilter">
+    <property name="enabled" value="${session.tracker.filter.enabled:false}" />
+<!--     <property name="checkSerializability" value="${session.tracker.filter.checkSerializability:true}" /> -->
+    <property name="checkSerializability" value="${session.tracker.filter.checkSerializability:false}" />
+    <property name="useCopy" value="${session.tracker.filter.useCopy:true}" />
+    <property name="dumpSession" value="${session.tracker.filter.dumpSession:false}" />
+    <property name="synchronizeOnSession" value="${session.tracker.filter.synchronizeOnSession:true}" />
+  </bean>
+
+</beans>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<authentication-manager alias="authenticationManager"
+		xmlns="http://www.springframework.org/schema/security">
+		<authentication-provider>
+			<!-- SHA-256 values can be produced using 'echo -n your_desired_password 
+				| sha256sum' (using normal *nix environments) -->
+			<!--<password-encoder hash="sha-256"/> -->
+			<user-service>
+				<user name="admin" password="admin" authorities="ROLE_ADMIN,ROLE_USER" />
+				<user name="user" password="user" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+	<!-- Vaadin application prototype bean -->
+
+	<bean id="vaadinApplication"
+		class="com.gk_software.core.client.web_vaadin.application.servlet.ServletSpringApplication"
+		parent="abstractVaadinApplication">
+
+		<property name="theme" value="com.gk-software.core.client.web-vaadin-it" />
+		<property name="mainWindowName" value="default" />
+		<property name="dependencyContext" ref="dependencyContext" />
+		<property name="windowBeanNameMapping">
+			<map>
+				<entry key="default" value="mainWindow" />
+			</map>
+		</property>
+		<property name="applicationRequestInterceptors">
+			<bean
+				class="com.gk_software.core.client.web_vaadin.it.main.security.SecurityContextApplicationRequestInterceptor" />
+		</property>
+	</bean>
+
+	<!-- overriden main application window -->
+	<bean id="mainWindow" parent="abstractMainWindow"
+		class="com.gk_software.core.client.web_vaadin.it.main.security.SecuredMainApplicationWindow">
+		<property name="roleProvider" ref="roleProvider" />
+		<property name="authenticationManager">
+			<bean
+				class="com.gk_software.core.client.web_vaadin.application.inject.SerializableWebFactoryBean">
+				<property name="beanName" value="authenticationManager" />
+				<property name="dependencyContext" ref="dependencyContext" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>

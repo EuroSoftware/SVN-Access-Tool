@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+
+  <!-- I18N support -->
+  <bean id="i18NService" class="gk.spring_ext.i18n.MessageSourceI18NService" />
+
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basename" value="classpath:i18n/messages" />
+    <property name="fallbackToSystemLocale" value="false" />
+  </bean>
+  
+  <bean class="gk.spring_ext.component.support.ComponentMessageSourceExporter" />
+
+</beans>

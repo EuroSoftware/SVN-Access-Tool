@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <!-- common part for servlet/portlet environment -->
+  <bean id="vaadinRequestHandler" abstract="true">
+    <property name="applicationBeanName" value="vaadinApplication" />
+    <property name="applicationClass" value="com.gk_software.core.client.web_vaadin.application.main.SpringApplication" />
+    <!-- application properties of embedded Vaadin servlet -->
+    <property name="applicationProperties">
+      <bean class="gk.spring_ext.config.FilteredPropertiesFactoryBean">
+        <property name="sourceProperties">
+          <bean class="gk.spring_ext.component.config.support.ComponentPropertiesFactoryBean" />
+        </property>
+        <property name="filterPrefix" value="vaadin.application.servlet." />
+      </bean>
+    </property>
+    <!-- request interceptors -->
+    <property name="requestInterceptors">
+      <list>
+        <bean class="com.gk_software.core.client.web_vaadin.application.main.impl.WebAppContextPublisherRequestInterceptor" />
+        <bean class="com.gk_software.core.client.web_vaadin.application.main.impl.I18NSupportInterceptor">
+          <property name="i18NService" ref="i18NService" />
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+</beans>

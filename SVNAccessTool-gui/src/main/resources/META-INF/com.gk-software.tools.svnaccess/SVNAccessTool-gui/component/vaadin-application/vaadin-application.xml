@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:oxm="http://www.springframework.org/schema/oxm"
+  xsi:schemaLocation="http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <!-- component resolver, which resolves component instances -->
+  <bean id="componentResolver" class="com.gk_software.core.client.web_vaadin.application.component_resolver.impl.ComponentResolver" />
+
+  <!-- dependency context bean -->
+  <bean
+    id="dependencyContext"
+    class="com.gk_software.core.client.web_vaadin.application.inject.context.impl.ComponentDependencyContextFactoryBean"
+  >
+    <property name="componentResolver" ref="componentResolver" />
+  </bean>
+
+  <!-- theme bean -->
+  <bean id="theme" class="com.gk_software.tools.svnaccess.theme.SvnAccessTheme" />
+
+  <!-- abstract Vaadin application prototype bean - redefined for servlet/portlet environment -->
+  <bean id="abstractVaadinApplication" abstract="true" scope="prototype">
+    <property name="themeInstance" ref="theme" />
+    <property name="mainWindowName" value="default" />
+    <property name="dependencyContext" ref="dependencyContext" />
+    <property name="windowBeanNameMapping">
+      <map>
+        <entry key="default" value="mainWindow" />
+      </map>
+    </property>
+    <property name="applicationProperties">
+      <bean class="gk.spring_ext.component.config.support.ComponentPropertiesFactoryBean" />
+    </property>
+  </bean>
+
+  <!-- abstract Vaadin main window bean -->
+  <bean
+    id="abstractMainWindow"
+
+    class="com.gk_software.tools.svnaccess.main.LoginWindow"
+    init-method="init"
+    scope="prototype"
+    abstract="true"
+  >
+  </bean>
+  
+  <!-- Vaadin main window bean -->
+  <bean id="mainWindow" parent="abstractMainWindow" />
+
+  <!-- role provider -->
+<!--   <bean id="roleProvider" class="com.gk_software.core.client.web_vaadin.it.main.function_provider.role.DefaultRoleProvider" /> -->
+
+</beans>

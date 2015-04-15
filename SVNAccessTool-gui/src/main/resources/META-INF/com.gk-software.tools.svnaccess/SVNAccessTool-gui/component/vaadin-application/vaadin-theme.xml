@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <bean id="cssProcessor" class="com.gk_software.core.client.web_vaadin.application.css.impl.CssProcessor" />
+  <bean id="cssRegistry" class="com.gk_software.core.client.web_vaadin.application.css.impl.CssResourcesRegistry" />
+
+  <bean id="vaadin-resources-servlet" class="com.gk_software.core.client.web_vaadin.application.css.impl.ResourceRequestHandler">
+    <property name="cssProcessor" ref="cssProcessor" />
+    <property name="cssResourcesHolder" ref="cssRegistry" />
+    <property name="themeHierarchy">
+      <map>
+        <entry key="reindeer" value="base"/>
+        <entry key="com.gk-software.default" value="reindeer"/>
+        <entry key="com.gk-software.tools.svnaccess" value="com.gk-software.default"/>
+      </map>
+    </property>
+  </bean>
+
+</beans>

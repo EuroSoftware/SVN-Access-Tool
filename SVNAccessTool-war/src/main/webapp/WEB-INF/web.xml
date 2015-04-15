@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>Vaadin web platform integration test</display-name>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/index.html</location>
+	</error-page>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+      classpath:/META-INF/com.gk-software.tools.svnaccess/SVNAccessTool-gui/component-container-descriptor.xml
+      classpath:/META-INF/com.gk-software.tools.svnaccess/SVNAccessTool-gui/component-container-beans.xml
+    </param-value>
+	</context-param>
+	<context-param>
+		<description>Properties path</description>
+		<param-name>properties</param-name>
+		<param-value>M://SVNAccessTool2//properties.properties</param-value>
+	</context-param>
+	<context-param>
+		<description>LDAP settings path</description>
+		<param-name>ldapsettings</param-name>
+		<param-value>M://SVNAccessTool2//LDAPSettings.xml</param-value>
+	</context-param>
+	<context-param>
+		<description>Modify list path</description>
+		<param-name>modifyList</param-name>
+		<param-value>M://SVNAccessTool2//modifyACL.list</param-value>
+	</context-param>
+	<context-param>
+		<description>Login for SVN</description>
+		<param-name>loginSVN</param-name>
+		<param-value>aa</param-value>
+	</context-param>
+	<context-param>
+		<description>Password for SVN</description>
+		<param-name>passwordSVN</param-name>
+		<param-value>aa</param-value>
+	</context-param>
+
+
+
+
+
+	<session-config>
+		<session-timeout>28</session-timeout>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>vaadin-servlet</servlet-name>
+		<servlet-class>gk.spring_ext.web.servlet.ComponentAwareHttpRequestHandlerServlet</servlet-class>
+		<init-param>
+			<description>path to component, which hosts the HTTP request handler for Vaadin servlet</description>
+			<param-name>componentPath</param-name>
+			<param-value>component-container[vaadin-application]</param-value>
+		</init-param>
+		<init-param>
+			<description>Application widgetset</description>
+			<param-name>widgetset</param-name>
+			<param-value>com.gk_software.core.client.web_vaadin.widget.WidgetSet</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>vaadin-servlet</servlet-name>
+		<url-pattern>/svnaccess/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>errors</servlet-name>
+		<servlet-class>servlets.ErrorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>errors</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>vaadin-resources-servlet</servlet-name>
+		<servlet-class>gk.spring_ext.web.servlet.ComponentAwareHttpRequestHandlerServlet</servlet-class>
+		<init-param>
+			<description>path to component, which hosts the HTTP request handler for the servlet</description>
+			<param-name>componentPath</param-name>
+			<param-value>component-container[vaadin-application]</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>vaadin-resources-servlet</servlet-name>
+		<url-pattern>/VAADIN/*</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>spring-request-context-filter</filter-name>
+		<filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+	</filter>
+
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>servlets.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/LogReader/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>ridici</servlet-name> -->
+	<!-- <servlet-class>servlets.Servlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>ridici</servlet-name> -->
+	<!-- <url-pattern>/logReader</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+
+	<filter-mapping>
+		<filter-name>spring-request-context-filter</filter-name>
+		<servlet-name>vaadin-servlet</servlet-name>
+	</filter-mapping>
+
+
+
+	<servlet>
+		<description></description>
+		<display-name>ShowResultsServlet</display-name>
+		<servlet-name>ShowResultsServlet</servlet-name>
+		<servlet-class>servlets.ShowResultsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowResultsServlet</servlet-name>
+		<url-pattern>/ShowResultsServlet</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <description></description> -->
+	<!-- <display-name>Item</display-name> -->
+	<!-- <servlet-name>Item</servlet-name> -->
+	<!-- <servlet-class>beans.Item</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>Item</servlet-name> -->
+	<!-- <url-pattern>/Item</url-pattern> -->
+	<!-- </servlet-mapping> -->
+	<!-- <servlet> -->
+	<!-- <description></description> -->
+	<!-- <display-name>LoginFilter</display-name> -->
+	<!-- <servlet-name>LoginFilter</servlet-name> -->
+	<!-- <servlet-class>servlets.LoginFilter</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>LoginFilter</servlet-name> -->
+	<!-- <url-pattern>/LoginFilter</url-pattern> -->
+	<!-- </servlet-mapping> -->
+</web-app>

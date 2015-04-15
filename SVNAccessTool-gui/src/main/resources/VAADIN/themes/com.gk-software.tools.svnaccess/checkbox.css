@@ -1,0 +1,61 @@
+$checkbox-input-width = 15px
+/* $checkbox-input-background-image = url("img/checkbox.png") */
+$checkbox-input-margin = 3px 0 3px 4px;
+
+@@import-inline("VAADIN/themes/com.gk-software.default/components/checkbox/checkbox-import.css")
+
+.v-checkbox label {
+  padding-left: 23px;
+}
+
+
+/** gk-checkbox, gk-checkbox-field **/
+.gk-checkbox-field .v-checkbox label,
+.gk-checkbox label {
+  display: none;
+}
+
+.gk-checkbox-field .gk-composite-label-text,
+.gk-checkbox {
+  font-size: 10pt;
+  line-height: 16px;
+  font-family: Arial,Helvetica,Tahoma,Verdana,sans-serif;
+}
+.gk-checkbox-field .gk-composite-label-text {
+  padding-top: 2px;
+}
+
+/* span .changedRights .input-placeholder{ */
+/*   background-image: url("img/changedRights.png"); */
+/* } */
+
+.$[checkbox-style-name] .input-placeholder {
+  background-image: url("img/checkbox.png");
+}
+
+.defaultRights .input-placeholder {
+  background-image: url("img/checkboxRights.png") !important;
+}
+
+.deadItem {
+	  text-decoration:line-through;
+}
+
+.deadItem .input-placeholder {
+  background-image: url("img/checkboxRightsDead.png") !important;
+}
+
+.addedRight .input-placeholder {
+  background-image: url("img/addedUserRights.png") !important;
+}
+
+.changedRights .input-placeholder {
+	background-image: url("img/changedRights.png") !important;
+}
+
+.removedRights .input-placeholder {
+  background-image: url("img/removedRights.png") !important;
+}
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:component="http://www.gk-software.com/schema/spring_ext/components/1.3"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.gk-software.com/schema/spring_ext/components/1.3 http://www.gk-software.com/schema/spring_ext/components/components-1.3.xsd
+  ">
+
+  <component:descriptor id="com.gk-software.tools.svnaccess.SVNAccessTool-gui.vaadin-application">
+    <component:description>Vaadin application component</component:description>
+    <component:content>
+      <component:xml-resource location="vaadin-env.xml"/>
+      <component:xml-resource location="vaadin-web.xml"/>
+      <component:xml-resource location="vaadin-i18n.xml"/>
+      <component:xml-resource location="vaadin-theme.xml"/>
+      <component:xml-resource location="vaadin-application.xml"/>
+<!--       <component:xml-resource location="vaadin-security.xml" if="${security.enabled}" /> -->
+      <component:xml-resource location="vaadin-jmx.xml" if="${jmx.enabled}" />
+      <component:xml-resource location="vaadin-servlet.xml" />
+    </component:content>
+  </component:descriptor>
+
+</beans>

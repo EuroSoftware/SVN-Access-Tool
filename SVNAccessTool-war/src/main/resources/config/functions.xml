@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<functions
+  xmlns="http://www.gk-software.com/schema/web-vaadin/it-functions/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.gk-software.com/schema/web-vaadin/it-functions/1.0
+    http://www.gk-software.com/schema/web-vaadin/it-functions/function-1.0.xsd
+  "
+>
+
+  <function-groups>
+    <function-group id="default">
+      <roles>
+        <role>ROLE_USER</role>
+      </roles>
+    </function-group>
+    <function-group id="admin">
+      <roles>
+        <role>ROLE_ADMIN</role>
+      </roles>
+    </function-group>
+    <function-group id="application">
+      <roles>
+        <role>ROLE_USER</role>
+      </roles>
+    </function-group>
+  </function-groups>
+
+  <function-list>
+    <function id="focus" function-type-id="focus-function-type" function-group-id="default" />
+    <function id="binding" function-type-id="binding-function-type" function-group-id="default" />
+    <function id="dialogs" function-type-id="dialogs-function-type" function-group-id="default" />
+    <function id="popup-panel" function-type-id="popup-panel-function-type" function-group-id="default" />
+    <function id="tabsheet" function-type-id="tabsheet-function-type" function-group-id="default" />
+    <function id="option-group" function-type-id="option-group-function-type" function-group-id="default" />
+    <function id="checkbox" function-type-id="checkbox-function-type" function-group-id="default" />
+    <function id="tree" function-type-id="tree-function-type" function-group-id="default" />
+    <function id="actionbar" function-type-id="actionbar-function-type" function-group-id="default" />
+    <function id="button-bar" function-type-id="button-bar-function-type" function-group-id="default" />
+    <function id="wizard" function-type-id="wizard-function-type" function-group-id="default" />
+    <function id="listbox" function-type-id="listbox-function-type" function-group-id="default" />
+    <function id="combobox" function-type-id="combobox-function-type" function-group-id="default" />
+    <function id="button" function-type-id="button-function-type" function-group-id="default" />
+    <function id="datetime" function-type-id="datetime-function-type" function-group-id="default" />
+    <function id="progress-indicator" function-type-id="progress-indicator-function-type" function-group-id="default" />
+    <function id="panel" function-type-id="panel-function-type" function-group-id="default" />
+    <function id="message-area" function-type-id="message-area-function-type" function-group-id="default" />
+    <function id="table" function-type-id="table-function-type" function-group-id="default" />
+    <function id="editable-table" function-type-id="editable-table-function-type" function-group-id="default" />
+    <function id="text-field" function-type-id="text-field-function-type" function-group-id="default" />
+    <function id="composite-actions" function-type-id="composite-actions-function-type" function-group-id="default" />
+    <function id="hitbox" function-type-id="hit-box-function-type" function-group-id="default" />
+    <function id="function-container" function-type-id="function-container-function-type" function-group-id="default" />
+    <function id="dashboard" function-type-id="dashboard-function-type" function-group-id="default" />
+    <function id="paging-table" function-type-id="paging-table-function-type" function-group-id="default" />
+    <function id="filter-table" function-type-id="filter-table-function-type" function-group-id="default" />
+    <function id="toolbox" function-type-id="toolbox-function-type" function-group-id="default" />
+    <function id="protected-restricted-access" function-type-id="protected-function-type" function-group-id="default" />
+    <function id="protected-full-access" function-type-id="protected-function-type" function-group-id="admin">
+      <parameters>
+        <parameter name="FULL_PERMISSION" type="java.lang.Boolean" value="true" />
+      </parameters>
+    </function>
+    <function id="overview-write-off" function-type-id="overview-write-off-function-type" function-group-id="application">
+      <parameters>
+        <parameter name="TABLE_HEIGHT" type="java.lang.String" value="150px" />
+      </parameters>
+    </function>
+    <function id="report-preview" function-type-id="report-preview-function-type" function-group-id="default" />
+    <function id="context-popup-view" function-type-id="context-popup-view-function-type" function-group-id="default" />
+    <function id="check-box-group" function-type-id="check-box-group-function-type" function-group-id="default" />
+    <function id="grid-toolbar" function-type-id="grid-toolbar-function-type" function-group-id="default" />
+    <function id="grid-split-panel" function-type-id="grid-split-panel-function-type" function-group-id="default" />
+    <function id="composite-errors" function-type-id="composite-errors-function-type" function-group-id="default" />
+    <function id="speedometer" function-type-id="speedometer-function-type" function-group-id="default" />
+    <function id="download" function-type-id="download-function-type" function-group-id="default" />
+    <function id="split-panel" function-type-id="split-panel-function-type" function-group-id="default" />
+    <function id="tree-table" function-type-id="tree-table-function-type" function-group-id="default" />
+  </function-list>
+
+  <section name="Components">
+    <menu-structure>
+      <node id="button" caption="Button" />
+      <node id="checkbox" caption="Checkbox" />
+      <node id="combobox" caption="Combobox" />
+      <node id="context-popup-view" caption="Context Popup View" />
+      <node id="datetime" caption="Date &amp; Time" />
+      <node id="grid-split-panel" caption="Grid Split Panel" />
+      <node id="hitbox" caption="Hit-box" />
+      <node id="text-field" caption="Label &amp; Text Field" />
+      <node id="listbox" caption="Listbox" />
+      <node id="progress-indicator" caption="Progress Indicator" />
+      <node id="message-area" caption="Message Area" />
+      <node id="report-preview" caption="Report Preview" />
+      <node id="speedometer" caption="Speedometer" />
+      <node id="split-panel" caption="Split Panel" />
+      <node id="table" caption="Table" />
+      <node id="tree" caption="Tree" />
+      <node id="tree-table" caption="Tree Table" />
+      <node id="wizard" caption="Wizard" />
+    </menu-structure>
+  </section>
+
+  <section name="Containers">
+    <menu-structure>
+      <node id="actionbar" caption="Action Bar" />
+      <node id="button-bar" caption="Button Bar" />
+      <node id="check-box-group" caption="Checkbox Group" />
+      <node id="option-group" caption="Option Group" />
+      <node id="panel" caption="Panel" />
+      <node id="popup-panel" caption="Popup Panel" />
+      <node id="tabsheet" caption="Tab Sheet" />
+    </menu-structure>
+  </section>
+
+  <section name="Functionality">
+    <menu-structure>
+      <node id="composite-actions" caption="Actions of composite components" />
+      <node id="composite-errors" caption="Errors of composite components" />
+      <node id="focus" caption="Focus Traversing" />
+      <node id="binding" caption="Data Binding" />
+      <node id="dashboard" caption="Dashboard" />
+      <node id="dialogs" caption="Dialogs" />
+      <node id="download" caption="Download" />
+      <node id="editable-table" caption="Editable Table" />
+      <node id="function-container" caption="Function Container" />
+      <node id="grid-toolbar" caption="Grid Toolbar" />
+      <node id="paging-table" caption="Paging Table" />
+      <node id="filter-table" caption="Filtering Table" />
+      <node id="toolbox" caption="Toolbox" />
+      <node id="protected-restricted-access" caption="Protected function - restricted access" />
+      <node id="protected-full-access" caption="Protected function - full access" />
+    </menu-structure>
+  </section>
+
+  <section name="Application">
+    <menu-structure>
+      <node id="overview-write-off" caption="Overview Write-Off" />
+    </menu-structure>
+  </section>
+
+</functions>

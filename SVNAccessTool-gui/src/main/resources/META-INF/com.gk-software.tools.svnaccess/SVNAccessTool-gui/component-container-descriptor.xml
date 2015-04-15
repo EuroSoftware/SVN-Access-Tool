@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:component="http://www.gk-software.com/schema/spring_ext/components/1.3"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.gk-software.com/schema/spring_ext/components/1.3 http://www.gk-software.com/schema/spring_ext/components/components-1.3.xsd
+  ">
+
+  <component:container-descriptor id="component-descriptor">
+
+    <component:container-config>
+      <component:property-file name="system"/>
+    </component:container-config>
+
+    <!-- main application controller -->
+    <component:instance name="vaadin-application">
+      <component:descriptor
+        ref="com.gk-software.tools.svnaccess.SVNAccessTool-gui.vaadin-application"
+        resource="component/vaadin-application/component-descriptor.xml"
+      />
+      <component:config>
+        <component:property-file name="application" />
+        <component:property-file name="vaadin-application" />
+        <component:property-file name="vaadin-web" />
+      </component:config>
+    </component:instance>
+  </component:container-descriptor>
+
+</beans>
